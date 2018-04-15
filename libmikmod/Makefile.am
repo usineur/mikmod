@@ -55,6 +55,7 @@ libmikmod_la_SOURCES = \
 		drivers/drv_pulseaudio.c \
 		drivers/drv_pipe.c \
 		drivers/drv_psp.c \
+		drivers/drv_vita.c \
 		drivers/drv_raw.c \
 		drivers/drv_sam9407.c \
 		drivers/drv_sb.c \

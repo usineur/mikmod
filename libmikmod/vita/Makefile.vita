@@ -1,0 +1,42 @@
+TARGET_LIB  = libmikmod.a
+COMMON_OBJS = ../drivers/drv_vita.o ../drivers/drv_nos.o \
+	../drivers/drv_raw.o ../drivers/drv_aiff.o ../drivers/drv_wav.o \
+	../loaders/load_669.o ../loaders/load_amf.o ../loaders/load_asy.o \
+	../loaders/load_dsm.o ../loaders/load_far.o ../loaders/load_gdm.o \
+	../loaders/load_gt2.o ../loaders/load_it.o ../loaders/load_imf.o \
+	../loaders/load_m15.o ../loaders/load_med.o ../loaders/load_mod.o \
+	../loaders/load_mtm.o ../loaders/load_okt.o ../loaders/load_s3m.o \
+	../loaders/load_stm.o ../loaders/load_stx.o ../loaders/load_ult.o \
+	../loaders/load_umx.o ../loaders/load_uni.o ../loaders/load_xm.o \
+	../mmio/mmalloc.o ../mmio/mmerror.o ../mmio/mmio.o \
+	../depackers/mmcmp.o ../depackers/pp20.o \
+	../depackers/s404.o ../depackers/xpk.o \
+	../posix/strcasecmp.o \
+	../playercode/mdriver.o ../playercode/mdreg.o \
+	../playercode/mloader.o ../playercode/mlreg.o \
+	../playercode/mlutil.o ../playercode/mplayer.o \
+	../playercode/munitrk.o ../playercode/mwav.o \
+	../playercode/npertab.o ../playercode/sloader.o \
+	../playercode/virtch.o ../playercode/virtch2.o \
+	../playercode/virtch_common.o
+
+
+PREFIX  = arm-vita-eabi
+CC      = $(PREFIX)-gcc
+AR      = $(PREFIX)-ar
+CFLAGS  = -Wl,-q -Wall -O3 -I../include
+CFLAGS += -DMIKMOD_BUILD
+CFLAGS += -DHAVE_FCNTL_H -DHAVE_LIMITS_H -DHAVE_MALLOC_H -DHAVE_UNISTD_H -DHAVE_SNPRINTF
+CFLAGS += -DDRV_VITA -DDRV_AIFF -DDRV_WAV -DDRV_RAW #-DNO_HQMIXER
+ASFLAGS = $(CFLAGS)
+
+$(TARGET_LIB): $(COMMON_OBJS)
+	$(AR) rcs $@ $^
+
+clean:
+	@rm -rf $(TARGET_LIB) $(COMMON_OBJS)
+
+install: $(TARGET_LIB)
+	@cp $(TARGET_LIB) $(VITASDK)/arm-vita-eabi/lib
+	@cp ../include/mikmod.h "$(VITASDK)/arm-vita-eabi/include/"
+	@echo "Installed!"

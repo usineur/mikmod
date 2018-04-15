@@ -21,6 +21,7 @@ EXTRA_DIST = CMakeLists.txt \
 	     drv_osx.c    \
 	     drv_pipe.c   \
 	     drv_psp.c    \
+	     drv_vita.c   \
 	     drv_pulseaudio.c \
 	     drv_raw.c    \
 	     drv_sam9407.c\

@@ -117,6 +117,10 @@ static void _mm_registeralldrivers(void)
 #ifdef DRV_PSP
 	_mm_registerdriver(&drv_psp);
 #endif
+#ifdef DRV_VITA
+	_mm_registerdriver(&drv_vita);
+#endif
+
 #ifdef DRV_OSLES
 	_mm_registerdriver(&drv_osles);
 #endif
