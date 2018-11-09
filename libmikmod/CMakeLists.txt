@@ -121,6 +121,8 @@ ELSE()
 SET (ENABLE_HPUX 0)
 ENDIF()
 
+SET (ENABLE_VITA 0 CACHE BOOL "Build for PlayStation Vita device")
+
 IF(WIN32)
 SET (ENABLE_DSOUND 1 CACHE BOOL "Include the DirectSound driver")
 SET (ENABLE_MMSOUND 1 CACHE BOOL "Include the Windows MCI driver")
@@ -335,6 +337,7 @@ SET (MIKMOD_LIB_MODULES
     drivers/drv_stdout.c
     drivers/drv_sun.c
     drivers/drv_ultra.c
+    drivers/drv_vita.c
     drivers/drv_wav.c
     drivers/drv_win.c
     drivers/drv_xaudio2.c
@@ -455,6 +458,12 @@ IF(ENABLE_RAW)
 SET(DRV_RAW 1)
 ELSE()
 SET(DRV_RAW)
+ENDIF()
+
+IF(ENABLE_VITA)
+SET(DRV_VITA 1)
+ELSE()
+SET(DRV_VITA)
 ENDIF()
 
 IF(ENABLE_SIMD)
